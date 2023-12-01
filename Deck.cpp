@@ -1,6 +1,9 @@
 #include <ctime>
 #include <algorithm>
 #include <iostream>
+#include <chrono>
+#include <thread>
+
 #include "Deck.h"
 
 Deck::Deck() {
@@ -17,6 +20,7 @@ void Deck::initializeDeck() {
 }
 
 void Deck::shuffle() {
+    std::this_thread::sleep_for(std::chrono::milliseconds(500));
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
     std::random_shuffle(cards.begin(), cards.end());
 }

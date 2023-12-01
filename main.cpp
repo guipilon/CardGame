@@ -13,6 +13,7 @@ int main() {
 
     // Add a deck to the shoe
     game.addDeckToShoe();
+    game.addDeckToShoe();
 
     // Add players to the game
     CardPlayer player1, player2;
@@ -22,10 +23,9 @@ int main() {
     // Shuffle the shoe
     game.shuffleShoe();
 
-    // Deal cards to players
-    for (int i = 0; i < 52; ++i) {
-        game.dealCards(0, 1); // Deal one card to player 1
-    }
+
+    game.dealCards(0, 52);
+    game.dealCards(1, 52);
 
     // Print player hands
     game.printPlayerHands();
