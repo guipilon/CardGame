@@ -128,6 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CardGame.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="CardPlayer.cpp" />
+    <ClCompile Include="Deck.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Card.h" />
+    <ClInclude Include="CardGame.h" />
+    <ClInclude Include="CardPlayer.h" />
+    <ClInclude Include="Deck.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
