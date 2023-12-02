@@ -3,7 +3,7 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-
+#include <random>
 #include "Deck.h"
 
 Deck::Deck() {
@@ -22,7 +22,20 @@ void Deck::initializeDeck() {
 void Deck::shuffle() {
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
     std::srand(static_cast<unsigned int>(std::time(nullptr)));
-    std::random_shuffle(cards.begin(), cards.end());
+    fisherYatesShuffle(cards);
+}
+
+void Deck::fisherYatesShuffle(std::vector<Card>& vec) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+
+    for (int i = vec.size() - 1; i > 0; --i) {
+        std::uniform_int_distribution<int> dist(0, i);
+        int j = dist(gen);
+
+        // Swap elements at i and j
+        std::swap(vec[i], vec[j]);
+    }
 }
 
 Card Deck::dealCard() {
@@ -40,4 +53,20 @@ Card Deck::dealCard() {
 
 int Deck::cardsLeft() const {
     return static_cast<int>(cards.size());
+}
+
+std::map<Suit, int> Deck::cardsLeftBySuit() const {
+
+    std::map<Suit, int> result;
+
+    for (Card card : cards) {
+        if (result.find(card.suit) != result.end()) {
+            result[card.suit]++;
+        }
+        else {
+            result.insert(std::pair<Suit, int>(card.suit,0));
+        }
+    }
+
+    return result;
 }
