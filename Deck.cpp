@@ -32,10 +32,9 @@ Card Deck::dealCard() {
         return card;
     }
     else {
-        // You can handle the case when the deck is empty, e.g., reshuffling or indicating the end of the game.
-        // For simplicity, let's assume the game ends when the deck is empty.
-        std::cerr << "Error: Deck is empty!" << std::endl;
-        exit(EXIT_FAILURE);
+
+        std::cout<< "Deck is empty!" << std::endl;
+        return Card::getJoker();
     }
 }
 

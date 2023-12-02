@@ -10,7 +10,7 @@ private:
 public:
     void addDeckToShoe();
 
-    void addPlayer(const CardPlayer& player);
+    void addPlayer(CardPlayer& player);
 
     void dealCards(int playerIndex, int numCards);
 

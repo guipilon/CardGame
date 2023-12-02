@@ -1,5 +1,13 @@
 #include "CardPlayer.h"
 
+void CardPlayer::setPlayerNumber(int playerNumber) {
+    this->playerNumber = playerNumber;
+}
+
+int CardPlayer::getPlayerNumber() const {
+    return this->playerNumber;
+}
+
 void CardPlayer::receiveCard(const Card& card) {
     hand.push_back(card);
 }

@@ -7,14 +7,22 @@ void CardGame::addDeckToShoe() {
     shoe.emplace_back();
 }
 
-void CardGame::addPlayer(const CardPlayer& player) {
+void CardGame::addPlayer(CardPlayer& player) {
+    player.setPlayerNumber(players.size());
     players.push_back(player);
 }
 
 void CardGame::dealCards(int playerIndex, int numCards) {
-    for (int i = 0; i < numCards; ++i) {
+    int i = 0;
+    while (!shoe.empty() && i < numCards) {
         Card card = shoe.back().dealCard();
-        players[playerIndex].receiveCard(card);
+        if (card.suit == Suit::JOKER) {
+            shoe.pop_back();
+        }
+        else {
+            i++;
+            players[playerIndex].receiveCard(card);
+        }
     }
 }
 
@@ -29,9 +37,12 @@ void CardGame::printPlayerHands() const {
 
     for (size_t i = 0; i < players.size(); ++i) {
         int totalValue = players[i].calculateHandValue();
-        playerValues.emplace_back(totalValue, i);
+        int index = players[i].getPlayerNumber();
+        playerValues.emplace_back(totalValue, index);
     }
 
+    //Assuming the winner is the player with the biggest hand value.
+    //The player printed first is the winner
     std::sort(playerValues.rbegin(), playerValues.rend());
 
     for (const auto& entry : playerValues) {

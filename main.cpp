@@ -24,8 +24,8 @@ int main() {
     game.shuffleShoe();
 
 
-    game.dealCards(0, 52);
-    game.dealCards(1, 52);
+    game.dealCards(0, 2);
+    game.dealCards(1, 60);
 
     // Print player hands
     game.printPlayerHands();
